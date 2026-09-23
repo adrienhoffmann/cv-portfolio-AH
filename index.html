@@ -1,0 +1,1350 @@
+<!doctype html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Adrien Hoffmann — Portfolio</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+
+    <link rel="stylesheet" href="dist/reveal.css">
+
+    <link rel="stylesheet" href="dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+    <style>
+
+        :root {
+
+            --main-color: #111;
+
+            --accent-color: #ff4d4d;
+
+            --muted-color: #666;
+
+            --bg-color: #fafafa;
+
+        }
+
+        .reveal {
+
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+            color: var(--main-color);
+
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+
+            font-weight: 700;
+
+            text-transform: none;
+
+            letter-spacing: -0.02em;
+
+            color: var(--main-color);
+
+        }
+
+        .reveal h1 { font-size: 2.4em; }
+
+        .reveal h2 { font-size: 1.6em; margin-bottom: 0.3em; }
+
+        .reveal h3 { font-size: 1.2em; margin-bottom: 0.25em; }
+
+        .reveal p, .reveal li {
+
+            font-size: 0.7em;
+
+            line-height: 1.4;
+
+            color: #333;
+
+        }
+
+        .reveal a {
+
+            color: var(--accent-color);
+
+            text-decoration: none;
+
+        }
+
+        .reveal a:hover {
+
+            text-decoration: underline;
+
+        }
+
+        .reveal .slides section {
+
+            padding: 40px;
+
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: flex-start;
+
+            box-sizing: border-box;
+
+            overflow-y: auto;
+
+            overflow-x: hidden;
+
+        }
+
+        .reveal .slides section > * {
+
+            flex-shrink: 0;
+
+        }
+
+        /* ----- Home ----- */
+
+        .home-slide h1 {
+
+            font-size: 3em;
+
+            margin-bottom: 0.1em;
+
+        }
+
+        .home-slide .subtitle {
+
+            font-size: 1.1em;
+
+            color: var(--muted-color);
+
+            margin-bottom: 1.5em;
+
+        }
+
+        .home-slide .tagline {
+
+            font-size: 0.9em;
+
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            color: #444;
+
+        }
+
+        .home-slide .cta {
+
+            margin-top: 2em;
+
+            font-size: 0.8em;
+
+            color: var(--muted-color);
+
+        }
+
+        /* ----- CV ----- */
+
+        .cv-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 24px;
+
+            text-align: left;
+
+            max-width: 900px;
+
+            width: 100%;
+
+            margin: 0 auto;
+
+            overflow-y: auto;
+
+            max-height: 55vh;
+
+            padding-right: 10px;
+
+        }
+
+        .cv-block h3 {
+
+            border-bottom: 2px solid var(--accent-color);
+
+            padding-bottom: 0.2em;
+
+            margin-bottom: 0.4em;
+
+            font-size: 0.9em;
+
+        }
+
+        .cv-block ul {
+
+            list-style: none;
+
+            padding: 0;
+
+            margin: 0;
+
+        }
+
+        .cv-block li {
+
+            margin-bottom: 0.3em;
+
+            font-size: 0.55em;
+
+        }
+
+        .cv-pdf {
+
+            margin-top: 1em;
+
+            display: inline-block;
+
+            padding: 10px 24px;
+
+            border: 2px solid var(--main-color);
+
+            border-radius: 30px;
+
+            font-weight: 600;
+
+            font-size: 0.65em;
+
+            transition: all 0.2s ease;
+
+        }
+
+        .cv-pdf:hover {
+
+            background: var(--main-color);
+
+            color: #fff;
+
+            text-decoration: none;
+
+        }
+
+        /* ----- Portfolio overview ----- */
+
+        .portfolio-overview {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+            max-width: 1100px;
+
+            width: 100%;
+
+            margin: 0 auto;
+
+        }
+
+        .portfolio-card {
+
+            background: #fff;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        }
+
+        .portfolio-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+
+        }
+
+        .portfolio-card img, .portfolio-card video {
+
+            width: 100%;
+
+            height: 150px;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+        .portfolio-card h3 {
+
+            font-size: 0.8em;
+
+            padding: 12px 12px 6px;
+
+            margin: 0;
+
+        }
+
+        .portfolio-card p {
+
+            font-size: 0.5em;
+
+            padding: 0 12px 12px;
+
+            margin: 0;
+
+            color: var(--muted-color);
+
+        }
+
+        /* ----- Project detail slides ----- */
+
+        .project-detail {
+
+            text-align: left;
+
+            max-width: 1100px;
+
+            width: 100%;
+
+            margin: 0 auto;
+
+            display: flex;
+
+            flex-direction: column;
+
+            height: 100%;
+
+        }
+
+        .project-detail h2 {
+
+            margin-bottom: 0.15em;
+
+            font-size: 1.5em;
+
+        }
+
+        .project-detail .meta {
+
+            font-size: 0.6em;
+
+            color: var(--accent-color);
+
+            margin-bottom: 0.6em;
+
+            font-weight: 600;
+
+        }
+
+        .project-detail p {
+
+            font-size: 0.6em;
+
+            max-width: 700px;
+
+            margin-bottom: 0.8em;
+
+        }
+
+        .media-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 12px;
+
+            margin-top: 0.8em;
+
+            overflow-y: auto;
+
+            max-height: 52vh;
+
+            padding-right: 8px;
+
+        }
+
+        .media-grid img, .media-grid video {
+
+            width: 100%;
+
+            
+
+            object-fit: cover;
+
+            border-radius: 8px;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+        }
+
+        .media-grid video {
+
+            background: #000;
+
+        }
+
+        .video-link {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            
+
+            border-radius: 8px;
+
+            background: #f0f0f0;
+
+            color: var(--main-color);
+
+            font-weight: 600;
+
+            font-size: 0.75em;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+            transition: all 0.2s ease;
+
+        }
+
+        .video-link:hover {
+
+            background: var(--main-color);
+
+            color: #fff;
+
+            text-decoration: none;
+
+        }
+
+        /* ----- Navigation helper ----- */
+
+        .nav-hint {
+
+            position: fixed;
+
+            bottom: 18px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 0.55em;
+
+            color: #aaa;
+
+            z-index: 10;
+
+            pointer-events: none;
+
+        }
+
+        /* Hide reveal.js controls when scrolling */
+
+        .reveal .controls {
+
+            z-index: 100;
+
+        }
+
+        /* Override reveal background for cleaner look */
+
+        .reveal .backgrounds {
+
+            background: var(--bg-color);
+
+        }
+
+        .reveal .progress {
+
+            color: var(--accent-color);
+
+            height: 3px;
+
+        }
+
+        /* ----- Responsive adjustments ----- */
+
+        @media (max-width: 900px) {
+
+            .portfolio-overview {
+
+                grid-template-columns: 1fr;
+
+                max-width: 500px;
+
+            }
+
+            .portfolio-card img, .portfolio-card video {
+
+                height: 200px;
+
+            }
+
+            .cv-grid {
+
+                grid-template-columns: 1fr;
+
+                max-height: 60vh;
+
+            }
+
+            .media-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
+                max-height: 55vh;
+
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .reveal h1 { font-size: 1.8em; }
+
+            .reveal h2 { font-size: 1.3em; }
+
+            .reveal h3 { font-size: 1em; }
+
+            .reveal .slides section {
+
+                padding: 20px;
+
+            }
+
+            .home-slide h1 {
+
+                font-size: 2em;
+
+            }
+
+            .home-slide .subtitle {
+
+                font-size: 0.9em;
+
+            }
+
+            .media-grid {
+
+                grid-template-columns: 1fr;
+
+                max-height: 58vh;
+
+            }
+
+            .media-grid img, .media-grid video, .video-link { height: auto; }
+
+        }
+        /* ----- Single scroll for long slides ----- */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .reveal {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .reveal .slides {
+            height: 100%;
+        }
+
+        /* Only the active slide may scroll vertically. */
+        .reveal .slides section.present {
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            height: 100% !important;
+            max-height: 100% !important;
+            box-sizing: border-box;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+
+        /* Do not create a second scrollbar inside CV/project grids. */
+        .reveal .slides section.present .cv-grid,
+        .reveal .slides section.present .media-grid {
+            overflow: visible !important;
+            max-height: none !important;
+        }
+
+        /* A little space at the bottom ensures the last image/page
+           can be shown completely before reaching the end of the scroll. */
+        .reveal .slides section.present::after {
+            content: "";
+            display: block;
+            height: 50px;
+            flex: 0 0 50px;
+        }
+
+    
+        /* ----- Project meta alignment ----- */
+        .project-detail .meta {
+            display:block; width:100%; margin:0 0 0.75em 0 !important; padding:0 !important;
+            line-height:1.3; text-align:left; box-sizing:border-box;
+        }
+        .project-detail > p:not(.meta) { margin-top:0 !important; }
+        .media-grid video, .media-grid iframe {
+            width:100%; height:170px; display:block; border:0; border-radius:8px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.08); background:#000;
+        }
+        .project-subsection { margin-top:1.2em; }
+        .project-subsection h3 { margin:0 0 0.35em 0; font-size:0.9em; }
+        .project-subsection p { margin:0 0 0.7em 0 !important; max-width:760px; }
+
+    
+        /* ----- Médias Full HD 1920x1080 / ratio 16:9 ----- */
+        .media-grid img,
+        .media-grid video,
+        .media-grid iframe {
+            width: 100% !important;
+            aspect-ratio: 16 / 9;
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            background: #000;
+            box-sizing: border-box;
+        }
+
+        .media-grid img,
+        .media-grid video {
+            object-fit: contain !important;
+        }
+
+        .media-grid video {
+            background: #000;
+        }
+
+        .youtube-preview {
+            position: relative;
+            overflow: hidden;
+            text-decoration: none !important;
+        }
+
+        .youtube-preview img {
+            width: 100% !important;
+            height: 100% !important;
+            aspect-ratio: auto !important;
+            object-fit: cover !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            display: block;
+        }
+
+        .youtube-preview .youtube-play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 78px;
+            height: 55px;
+            border-radius: 14px;
+            background: rgba(255, 0, 0, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.28);
+            transition: transform .2s ease, background .2s ease;
+            pointer-events: none;
+        }
+
+        .youtube-preview .youtube-play::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 11px solid transparent;
+            border-bottom: 11px solid transparent;
+            border-left: 18px solid #fff;
+            margin-left: 4px;
+        }
+
+        .youtube-preview:hover .youtube-play {
+            transform: translate(-50%, -50%) scale(1.08);
+            background: #ff0000;
+        }
+
+        @media (max-width: 600px) {
+            .media-grid img,
+            .media-grid video,
+            .media-grid iframe,
+            .youtube-preview {
+                height: auto !important;
+                aspect-ratio: 16 / 9;
+            }
+        }
+
+    
+        /* ----- YouTube inline: one preview, then one player in the same place ----- */
+        .youtube-inline {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .youtube-inline-preview {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            background: #000;
+            cursor: pointer;
+        }
+
+        .youtube-inline-preview img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .youtube-inline-play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 82px;
+            height: 58px;
+            border-radius: 14px;
+            background: #ff0000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 31px;
+            line-height: 1;
+            padding-left: 5px;
+            pointer-events: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .youtube-inline iframe {
+            position: absolute;
+            inset: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: 0;
+            display: block;
+        }
+
+        .youtube-local-warning {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 30px;
+            box-sizing: border-box;
+            text-align: center;
+            background: #111;
+            color: #fff;
+        }
+
+        .youtube-local-warning strong {
+            font-size: 0.8em;
+        }
+
+        .youtube-local-warning span {
+            max-width: 760px;
+            font-size: 0.55em;
+            line-height: 1.45;
+            color: #ccc;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <div class="slides">
+
+            <!-- ==================== ACCUEIL ==================== -->
+
+            <section class="home-slide">
+
+                <h1>Adrien Hoffmann</h1>
+
+                <p class="subtitle">Artiste 3D &middot; Art graphique &middot; Direction artistique</p>
+
+                <p class="tagline">
+
+                    Bienvenue sur mon portfolio interactif.<br>
+
+                    Faites défiler pour découvrir mon CV, mes créations 3D et mes projets d’art graphique.
+
+                </p>
+
+                <p class="cta">→ flèches du clavier ou swipe pour naviguer</p>
+
+            </section>
+
+            <!-- ==================== CV ==================== -->
+
+            <section>
+
+                <section>
+
+                    <h2>CV</h2>
+<div class="cv-grid">
+
+                        <div class="cv-block">
+
+                            <h3>Profil</h3>
+
+                            <ul>
+
+                                <li><strong>Nom :</strong> Adrien Hoffmann</li>
+
+                                <li><strong>Métier :</strong> Artiste 3D / Art graphique</li>
+
+                                <li><strong>Spécialités :</strong> Environnements 3D, génération procédurale, digital painting, identité visuelle</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="cv-block">
+
+                            <h3>Compétences</h3>
+
+                            <ul>
+
+                                <li>Modélisation 3D &amp; sculpture</li>
+
+                                <li>Création d’assets &amp; génération procédurale</li>
+
+                                <li>Digital painting &amp; illustration</li>
+
+                                <li>Direction artistique &amp; branding</li>
+
+                            </ul>
+
+                        </div>
+<div class="cv-block">
+
+                            <h3>Contact</h3>
+
+                            <ul>
+
+                                <li>Email : <a href="mailto:adrien.hoffmann@example.com">adrien.hoffmann@example.com</a></li>
+</ul>
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <a class="cv-pdf" href="asset/cv/CV%20AH%202026%20designerGraphiste.pdf" target="_blank">📄 Voir / télécharger mon CV 2026 (PDF)</a>
+
+                </section>
+
+            </section>
+
+            <!-- ==================== PORTFOLIO 3D ==================== -->
+
+            <section>
+
+                <!-- Overview -->
+
+                <section>
+
+                    <h2>Portfolio 3D</h2>
+
+                    <p style="font-size:0.7em; color:#666; margin-bottom:1.2em;">Trois projets autour des environnements virtuels, des assets et de l’infini généré.</p>
+
+                    <div class="portfolio-overview">
+
+                        <div class="portfolio-card">
+
+                            <img src="asset/3D1%20art%20environemental/landscape.jpg" alt="3D 1">
+
+                            <h3>3D 1 — Art environnemental</h3>
+
+                            <p>Environnements naturels et extraterrestres.</p>
+
+                        </div>
+
+                        <div class="portfolio-card">
+
+                            <img src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/clifften.PNG" alt="3D 2">
+
+                            <h3>3D 2 — Assets &amp; génération procédurale</h3>
+
+                            <p>Création d’assets et terrains procéduraux.</p>
+
+                        </div>
+
+                        <div class="portfolio-card">
+
+                            <img src="asset/3D3%20vers%20l'infini/100%20made%20by%20me.png" alt="3D 3">
+
+                            <h3>3D 3 — Vers l’infini</h3>
+
+                            <p>Explorations spatiales et concepts infinis.</p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- 3D1 detail -->
+
+                <section class="project-detail">
+
+                    <h2>3D 1 — Art environnemental</h2>
+
+                    <p class="meta">Environnements 3D / Landscapes</p>
+
+                    <p>
+
+                        Série d’environnements 3D explorant différents biomes : jungle luxuriante, dunes minérales et paysages martiens.
+
+                        Le travail porte sur la composition, l’éclairage atmosphérique et la création d’espaces immersifs.
+
+                    </p>
+
+                    <div class="media-grid">
+
+                        <img src="asset/3D1%20art%20environemental/landscape.jpg" alt="Landscape">
+
+                        <img src="asset/3D1%20art%20environemental/MARS.png" alt="Mars">
+
+                        <img src="asset/3D1%20art%20environemental/Dune.png" alt="Dune">
+
+                        <img src="asset/3D1%20art%20environemental/Jungle.png" alt="Jungle">
+
+                    </div>
+
+                </section>
+
+                <!-- 3D2 detail -->
+
+                <section class="project-detail">
+
+                    <h2>3D 2 — Création d’assets &amp; génération procédurale</h2>
+
+                    <p class="meta">Assets 3D / Procédural / Végétation</p>
+
+                    <p>
+
+                        Recherche sur la création d’assets réutilisables et la génération procédurale de végétation et de falaises.
+
+                        Les vidéos montrent l’évolution de la végétation et des formations rocheuses générées algorithmiquement.
+
+                    </p>
+
+                    <div class="media-grid">
+
+                        <img src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/clifften.PNG" alt="Cliff">
+
+                        <video controls preload="metadata" playsinline src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/speedtree.mp4"></video>
+
+                        <video controls preload="metadata" playsinline src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/proc%C3%A9_1.mp4"></video>
+<img src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/clifften2.PNG" alt="Cliff 2">
+
+                    </div>
+
+                </section>
+
+                <!-- 3D3 detail -->
+
+                <section class="project-detail">
+
+                    <h2>3D 3 — Vers l’infini</h2>
+
+                    <p class="meta">Space art / Concept 3D</p>
+
+                    <p>
+
+                        Exploration de l’espace et de l’infini à travers des scènes 3D et des animations contemplatives.
+
+                        Ce projet joue avec l’échelle, le vide et la lumière cosmique.
+
+                    </p>
+
+                    <div class="media-grid">
+
+                        <img src="asset/3D3%20vers%20l'infini/100%20made%20by%20me.png" alt="100 made by me">
+
+                        <img src="asset/3D3%20vers%20l'infini/HighresScreenshot00007.png" alt="High resolution screenshot 00007">
+
+                        <img src="asset/3D3%20vers%20l'infini/HighresScreenshot00014.png" alt="High resolution screenshot 00014">
+
+                        <img src="asset/3D3%20vers%20l'infini/adrien-hoffmann-highresscreenshot00001.png"
+                             alt="Capture haute résolution — Vers l’infini"
+                             data-base="asset/3D3%20vers%20l'infini/adrien-hoffmann-highresscreenshot00001"
+                             data-ext-index="0"
+                             onerror="const e=['.jpg','.JPG','.jpeg','.webp']; const i=Number(this.dataset.extIndex||0); if(i&lt;e.length){this.dataset.extIndex=i+1;this.src=this.dataset.base+e[i];}else{this.style.display='none';}">
+
+                        <div class="youtube-inline" id="youtubeInlinep0z_ZncuytE">
+                            <button class="youtube-inline-preview" type="button"
+                                    onclick="playYouTubeInline('p0z_ZncuytE')"
+                                    aria-label="Lire l’animation 3D dans le portfolio">
+                                <img src="https://img.youtube.com/vi/p0z_ZncuytE/maxresdefault.jpg"
+                                     alt="Aperçu de l’animation 3D">
+                                <span class="youtube-inline-play">▶</span>
+                            </button>
+                        </div>
+
+                        <div class="youtube-inline" id="youtubeInlineQfEMiWlgyOM">
+                            <button class="youtube-inline-preview" type="button"
+                                    onclick="playYouTubeInline('QfEMiWlgyOM')"
+                                    aria-label="Lire l’animation 3D dans le portfolio">
+                                <img src="https://img.youtube.com/vi/QfEMiWlgyOM/maxresdefault.jpg"
+                                     alt="Aperçu de l’animation 3D">
+                                <span class="youtube-inline-play">▶</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+            <!-- ==================== PORTFOLIO ART GRAPHIQUE ==================== -->
+
+            <section>
+
+                <!-- Overview -->
+
+                <section>
+
+                    <h2>Portfolio Art Graphique</h2>
+
+                    <p style="font-size:0.7em; color:#666; margin-bottom:1.2em;">Trois axes de création : dessin, identité de marque, et passage du 2D au 3D.</p>
+
+                    <div class="portfolio-overview">
+
+                        <div class="portfolio-card">
+
+                            <img src="asset/artgraphique1%20dessin%20et%20artgraphique/dessinlapin.JPG" alt="Art graphique 1">
+
+                            <h3>Art graphique 1 — Dessin &amp; art graphique</h3>
+
+                            <p>Illustrations, croquis et explorations graphiques.</p>
+
+                        </div>
+
+                        <div class="portfolio-card">
+
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/design.JPG" alt="Art graphique 2">
+
+                            <h3>Art graphique 2 — Marque &amp; client</h3>
+
+                            <p>Identités visuelles et créations pour des clients.</p>
+
+                        </div>
+
+                        <div class="portfolio-card">
+
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/City%20digital%20painting.jpg" alt="Art graphique 3">
+
+                            <h3>Art graphique 3 — Du 2D au 3D</h3>
+
+                            <p>Parcours d’une idée sketchée jusqu’à sa version 3D.</p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Art graphique 1 detail -->
+
+                <section class="project-detail">
+
+                    <h2>Art graphique 1 — Dessin &amp; art graphique</h2>
+
+                    <p class="meta">Illustration / Dessin traditionnel &amp; digital</p>
+
+                    <p>
+
+                        Série de dessins et illustrations mêlant techniques traditionnelles et digital painting.
+
+                        On y trouve des croquis d’animaux, des portraits et des expérimentations graphiques.
+
+                    </p>
+
+                    <div class="media-grid">
+
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/dessinlapin.JPG" alt="Lapin">
+
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/beau%20veron%20fini.jpg" alt="Veron">
+
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/RAGE.jpg" alt="Rage">
+
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/nuage.JPG" alt="Nuage">
+
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/INSTA.jpg" alt="Insta">
+
+                    </div>
+
+                </section>
+
+                <!-- Art graphique 2 detail -->
+
+                <section class="project-detail">
+
+                    <h2>Art graphique 2 — Marque &amp; client</h2>
+
+                    <p class="meta">Branding / Illustration commerciale</p>
+
+                    <p>
+                        Deux projets distincts : un travail d’illustration réalisé en BTS pour un livre pour enfant,
+                        et les visuels créés pour Yayo, une marque de vêtements fondée avec deux amis.
+                    </p>
+
+                    <div class="project-subsection">
+                        <h3>Projet BTS — Livre pour enfant</h3>
+                        <p>Illustrations réalisées dans le cadre de mon BTS pour un projet de livre pour enfant.</p>
+                        <div class="media-grid">
+                            <img src="asset/artgraphique2%20marque%20et%20client/client/renard.JPG" alt="Illustration renard — livre pour enfant">
+                            <img src="asset/artgraphique2%20marque%20et%20client/client/montagne.JPG" alt="Illustration montagne — livre pour enfant">
+                        </div>
+                    </div>
+
+                    <div class="project-subsection">
+                        <h3>Yayo — Marque de vêtements</h3>
+                        <p>Visuels réalisés pour Yayo, la marque de vêtements que j’ai créée avec deux amis.</p>
+                        <div class="media-grid">
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/design.JPG" alt="Yayo design">
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayo%20cerise.JPG" alt="Yayo cerise">
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayocerisier.JPG" alt="Yayo cerisier">
+                        </div>
+                    </div>
+
+                
+                    <!-- Présentation Bamb Go -->
+                    <h3 style="margin-top:1em;">Bamb Go</h3>
+                    <p>
+                        Présentation du projet Bamb Go : recherches graphiques, identité visuelle et mise en situation du produit.
+                    </p>
+
+                    <div class="media-grid">
+                        <img src="asset/bambgo/1.png" alt="Bamb Go 1">
+                        <img src="asset/bambgo/2.png" alt="Bamb Go 2">
+                        <img src="asset/bambgo/3.png" alt="Bamb Go 3">
+                        <img src="asset/bambgo/4.png" alt="Bamb Go 4">
+                        <img src="asset/bambgo/5.png" alt="Bamb Go 5">
+                        <img src="asset/bambgo/6.png" alt="Bamb Go 6">
+                        <div class="youtube-inline" id="youtubeInlineQ2RSkdNCAgw">
+                            <button class="youtube-inline-preview" type="button"
+                                    onclick="playYouTubeInline('Q2RSkdNCAgw')"
+                                    aria-label="Lire le film Bamb Go dans le portfolio">
+                                <img src="https://img.youtube.com/vi/Q2RSkdNCAgw/maxresdefault.jpg"
+                                     alt="Aperçu du film Bamb Go">
+                                <span class="youtube-inline-play">▶</span>
+                            </button>
+                        </div>
+                    </div>
+
+</section>
+
+                <!-- Art graphique 3 detail -->
+
+                <section class="project-detail">
+
+                    <h2>Art graphique 3 — Du 2D au 3D</h2>
+
+                    <p class="meta">Concept art / Digital painting / Modélisation 3D</p>
+
+                    <p>
+
+                        Ce projet montre le passage d’une idée en digital painting à sa réalisation en 3D.
+
+                        Villes futuristes, îles tropicales et forêts stylisées : chaque création existe en version 2D, IA et 3D.
+
+                    </p>
+
+                    <div class="media-grid">
+
+                        <img src="asset/artgraphique3%20du%202D%20a%20la%203D/City%20digital%20painting.jpg" alt="City digital painting">
+
+                        <img src="asset/artgraphique3%20du%202D%20a%20la%203D/city3D.jpg" alt="City 3D">
+
+                        <img src="asset/artgraphique3%20du%202D%20a%20la%203D/spruce%203D.jpg" alt="Spruce 3D">
+
+                        <img src="asset/artgraphique3%20du%202D%20a%20la%203D/tropical%20islance%203D.png" alt="Tropical island 3D">
+
+                        <a class="video-link" href="asset/artgraphique3%20du%202D%20a%20la%203D/citysprucetrop.mp4" target="_blank">▶ Voir ville / spruce / tropique</a>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+            <!-- ==================== CONTACT ==================== -->
+
+            <section class="home-slide">
+
+                <h2>Contact</h2>
+
+                <p class="tagline">
+
+                    Vous avez un projet, une question ou une collaboration en tête ?<br>
+
+                    N’hésitez pas à me contacter.
+
+                </p>
+
+                <p style="font-size:0.85em; margin-top:1.5em;">
+
+                    <a href="mailto:adrien.hoffmann@example.com">adrien.hoffmann@example.com</a>
+
+                </p>
+
+                <p style="font-size:0.7em; color:#999; margin-top:2em;">
+
+                    © 2026 Adrien Hoffmann — Portfolio interactif
+
+                </p>
+
+            </section>
+
+        </div>
+
+    </div>
+<script src="dist/reveal.js"></script>
+
+    <script src="plugin/notes/notes.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+
+    <script src="plugin/highlight/highlight.js"></script>
+
+    <script>
+
+        Reveal.initialize({
+
+            hash: true,
+
+            slideNumber: 'c/t',
+
+            controls: true,
+
+            progress: true,
+
+            center: false,
+
+            transition: 'slide',
+
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+
+        });
+
+        // Reset scroll to top on every slide change
+
+        function resetScroll(slide) {
+
+            setTimeout(() => {
+
+                window.scrollTo(0, 0);
+
+                if (slide) slide.scrollTop = 0;
+
+                const slides = document.querySelector('.reveal .slides');
+
+                if (slides) slides.scrollTop = 0;
+
+                document.querySelectorAll('.reveal .slides section').forEach(s => s.scrollTop = 0);
+
+            }, 300);
+
+        }
+
+        Reveal.on('slidechanged', event => resetScroll(event.currentSlide));
+
+        Reveal.on('ready', event => resetScroll(event.currentSlide));
+
+        // Mouse wheel: scroll the current slide only.
+        document.addEventListener('wheel', function(event) {
+            const slide = Reveal.getCurrentSlide();
+            if (!slide) return;
+
+            const maxScroll = slide.scrollHeight - slide.clientHeight;
+            if (maxScroll <= 1) return;
+
+            const atTop = slide.scrollTop <= 1;
+            const atBottom = slide.scrollTop >= maxScroll - 1;
+
+            if ((event.deltaY > 0 && !atBottom) || (event.deltaY < 0 && !atTop)) {
+                event.preventDefault();
+                event.stopPropagation();
+                slide.scrollTop += event.deltaY;
+            }
+        }, { passive: false, capture: true });
+
+        function playYouTubeInline(videoId) {
+            const box = document.getElementById('youtubeInline' + videoId);
+            if (!box) return;
+
+            // YouTube rejects embedded playback when the page itself is opened as file://.
+            // Avoid showing its ugly Error 153 screen.
+            if (window.location.protocol === 'file:') {
+                box.innerHTML =
+                    '<div class="youtube-local-warning">' +
+                    '<strong>Lecture YouTube intégrée indisponible en mode fichier local</strong>' +
+                    '<span>Le portfolio est ouvert en file://. Ouvre-le via http://localhost ou sur ton site hébergé : la vidéo se lancera ici, sans nouvel onglet.</span>' +
+                    '</div>';
+                return;
+            }
+
+            const origin = encodeURIComponent(window.location.origin);
+            box.innerHTML =
+                '<iframe ' +
+                'src="https://www.youtube-nocookie.com/embed/' + videoId +
+                '?autoplay=1&rel=0&playsinline=1&origin=' + origin + '" ' +
+                'title="Animation 3D — Vers l’infini" ' +
+                'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+                'referrerpolicy="strict-origin-when-cross-origin" ' +
+                'allowfullscreen></iframe>';
+        }
+
+    </script>
+
+</body>
+
+</html>
