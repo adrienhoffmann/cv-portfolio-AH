@@ -787,6 +787,1204 @@
             color: #ccc;
         }
 
+    
+        /* =========================================================
+           SOBER INTERACTIVE GRID — portfolio background
+           ========================================================= */
+        :root {
+            --grid-size: 42px;
+            --grid-line: rgba(20, 20, 20, 0.055);
+            --grid-line-active: rgba(20, 20, 20, 0.16);
+            --mouse-x: 50vw;
+            --mouse-y: 50vh;
+        }
+
+        html, body {
+            background: #f7f7f4;
+        }
+
+        .reveal .backgrounds {
+            background: transparent !important;
+        }
+
+        .reveal::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+            background-size: var(--grid-size) var(--grid-size);
+        }
+
+        .reveal::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(to right, var(--grid-line-active) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line-active) 1px, transparent 1px);
+            background-size: var(--grid-size) var(--grid-size);
+            -webkit-mask-image:
+                radial-gradient(circle 250px at var(--mouse-x) var(--mouse-y),
+                rgba(0,0,0,0.95) 0%,
+                rgba(0,0,0,0.55) 40%,
+                transparent 78%);
+            mask-image:
+                radial-gradient(circle 250px at var(--mouse-x) var(--mouse-y),
+                rgba(0,0,0,0.95) 0%,
+                rgba(0,0,0,0.55) 40%,
+                transparent 78%);
+            transition: opacity 180ms ease;
+        }
+
+        
+        .reveal .slides {
+            z-index: 2;
+        }
+
+        .reveal .controls {
+            z-index: 1000;
+        }
+
+        .reveal .progress {
+            z-index: 1001;
+        }
+    
+
+        .portfolio-card {
+            border: 1px solid rgba(17,17,17,0.10);
+            border-radius: 6px;
+            box-shadow: none !important;
+            background: rgba(255,255,255,0.76);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(17,17,17,0.28);
+            background: rgba(255,255,255,0.92);
+            box-shadow: none !important;
+        }
+
+        .media-grid img,
+        .media-grid video,
+        .media-grid iframe,
+        .youtube-inline,
+        .video-link {
+            border-radius: 5px !important;
+            box-shadow: none !important;
+            outline: 1px solid rgba(17,17,17,0.09);
+            outline-offset: -1px;
+        }
+
+        .media-grid img,
+        .media-grid video {
+            background: rgba(255,255,255,0.72);
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
+            letter-spacing: -0.035em;
+        }
+
+        .project-detail .meta {
+            letter-spacing: 0.035em;
+            text-transform: uppercase;
+            font-size: 0.48em !important;
+            opacity: 0.82;
+        }
+
+        .cv-pdf,
+        .video-link {
+            border-radius: 5px !important;
+        }
+
+        .cv-pdf {
+            background: rgba(255,255,255,0.55);
+        }
+
+        .cv-pdf:hover {
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 700px) {
+            :root { --grid-size: 30px; }
+
+            .reveal::after {
+                opacity: 0.45;
+                -webkit-mask-image:
+                    radial-gradient(circle 160px at var(--mouse-x) var(--mouse-y), #000 0%, transparent 80%);
+                mask-image:
+                    radial-gradient(circle 160px at var(--mouse-x) var(--mouse-y), #000 0%, transparent 80%);
+            }
+
+            .portfolio-card {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .portfolio-card,
+            .reveal::after {
+                transition: none !important;
+            }
+        }
+
+    
+        /* ----- Reveal layout correction ----- */
+        .reveal .slides {
+            /* Keep Reveal.js native absolute positioning/transforms intact. */
+            position: absolute !important;
+            z-index: 2;
+        }
+
+        /* Keep section contents correctly centered within Reveal's slide area. */
+        .reveal .slides > section,
+        .reveal .slides > section > section {
+            box-sizing: border-box;
+        }
+
+        /* Progress bar: fixed at the very bottom and easier to see. */
+        .reveal .progress {
+            position: fixed !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            top: auto !important;
+            width: 100% !important;
+            height: 7px !important;
+            margin: 0 !important;
+            z-index: 2000 !important;
+            background: rgba(0,0,0,0.10) !important;
+        }
+
+        .reveal .progress span {
+            height: 100% !important;
+        }
+
+        /* Leave the navigation arrows just above the progress bar. */
+        .reveal .controls {
+            bottom: 14px !important;
+            z-index: 1999 !important;
+        }
+
+    
+        /* ----- Navigation controls correction ----- */
+        .reveal .controls {
+            position: fixed !important;
+            right: 22px !important;
+            bottom: 42px !important;
+            z-index: 5000 !important;
+            width: 110px !important;
+            height: 110px !important;
+            pointer-events: auto !important;
+        }
+
+        .reveal .controls button {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            z-index: 5001 !important;
+        }
+
+        /* Keep each Reveal arrow in its native clickable area. */
+        .reveal .controls .navigate-left,
+        .reveal .controls .navigate-right,
+        .reveal .controls .navigate-up,
+        .reveal .controls .navigate-down {
+            position: absolute !important;
+        }
+
+        .reveal .controls .navigate-up {
+            top: 0 !important;
+            left: 35px !important;
+        }
+
+        .reveal .controls .navigate-down {
+            bottom: 0 !important;
+            left: 35px !important;
+        }
+
+        .reveal .controls .navigate-left {
+            left: 0 !important;
+            top: 35px !important;
+        }
+
+        .reveal .controls .navigate-right {
+            right: 0 !important;
+            top: 35px !important;
+        }
+
+        /* Progress stays behind the navigation buttons. */
+        .reveal .progress {
+            z-index: 4000 !important;
+            pointer-events: none !important;
+        }
+
+    
+        /* ----- Remove duplicate vertical scrollbar ----- */
+
+        /* Vertical Reveal groups (the parent that contains sub-slides)
+           must never scroll. Only the actual visible leaf slide scrolls. */
+        .reveal .slides section.stack,
+        .reveal .slides section.present.stack {
+            overflow: hidden !important;
+            overflow-y: hidden !important;
+            overflow-x: hidden !important;
+        }
+
+        /* Only a real visible slide gets the working scrollbar. */
+        .reveal .slides section.present:not(.stack) {
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            scrollbar-gutter: auto !important;
+        }
+
+        /* Never let the content grids create their own scrollbar. */
+        .reveal .slides .cv-grid,
+        .reveal .slides .media-grid {
+            overflow: visible !important;
+            overflow-y: visible !important;
+            max-height: none !important;
+        }
+
+    
+        /* ----- Final text alignment cleanup ----- */
+
+        .project-detail {
+            text-align: left !important;
+            align-items: center;
+        }
+
+        .project-detail > h2,
+        .project-detail > .meta,
+        .project-detail > p,
+        .project-subsection {
+            width: min(100%, 980px);
+            max-width: 980px !important;
+            box-sizing: border-box;
+        }
+
+        .project-detail > h2 {
+            text-align: left !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .project-detail > .meta {
+            text-align: left !important;
+            margin: 0 auto 0.9em auto !important;
+        }
+
+        .project-detail > p:not(.meta) {
+            text-align: left !important;
+            margin: 0 auto 1.05em auto !important;
+            font-size: 0.58em !important;
+            line-height: 1.48 !important;
+            max-width: 980px !important;
+        }
+
+        .project-subsection {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: left !important;
+        }
+
+        .project-subsection h3 {
+            text-align: left !important;
+            margin-bottom: 0.35em !important;
+        }
+
+        .project-subsection p {
+            text-align: left !important;
+            max-width: 850px !important;
+            margin: 0 0 0.8em 0 !important;
+            font-size: 0.58em !important;
+            line-height: 1.45 !important;
+        }
+
+        .media-grid {
+            width: min(100%, 1100px);
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        /* Contact: center the content as a deliberate exception. */
+        .home-slide {
+            text-align: center !important;
+            align-items: center !important;
+        }
+
+        .home-slide h1,
+        .home-slide h2,
+        .home-slide .subtitle,
+        .home-slide .tagline,
+        .home-slide .cta {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: center !important;
+        }
+
+        /* ----- Symmetric Reveal navigation ----- */
+        .reveal .controls {
+            width: 112px !important;
+            height: 112px !important;
+            right: 28px !important;
+            bottom: 48px !important;
+        }
+
+        .reveal .controls button {
+            width: 36px !important;
+            height: 36px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            transform: none !important;
+        }
+
+        .reveal .controls .navigate-up {
+            top: 0 !important;
+            left: 38px !important;
+            right: auto !important;
+            bottom: auto !important;
+        }
+
+        .reveal .controls .navigate-down {
+            top: 76px !important;
+            left: 38px !important;
+            right: auto !important;
+            bottom: auto !important;
+        }
+
+        .reveal .controls .navigate-left {
+            top: 38px !important;
+            left: 0 !important;
+            right: auto !important;
+            bottom: auto !important;
+        }
+
+        .reveal .controls .navigate-right {
+            top: 38px !important;
+            left: 76px !important;
+            right: auto !important;
+            bottom: auto !important;
+        }
+
+        /* Normalize the actual arrow drawing so all four have same scale. */
+        .reveal .controls button::before {
+            transform-origin: center center !important;
+        }
+
+        @media (max-width: 700px) {
+            .project-detail > h2,
+            .project-detail > .meta,
+            .project-detail > p,
+            .project-subsection,
+            .media-grid {
+                width: 100%;
+                max-width: 100% !important;
+            }
+
+            .project-detail > p:not(.meta),
+            .project-subsection p {
+                font-size: 0.68em !important;
+            }
+        }
+
+    
+        /* =========================================================
+           FINAL COMPACT LAYOUT FIX
+           ========================================================= */
+
+        /* Project text: compact readable column, no huge visual gaps */
+        .project-detail {
+            align-items: center !important;
+            text-align: left !important;
+        }
+
+        .project-detail > h2,
+        .project-detail > .meta,
+        .project-detail > p:not(.meta) {
+            width: min(860px, 88%) !important;
+            max-width: 860px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            box-sizing: border-box !important;
+        }
+
+        .project-detail > h2 {
+            margin-top: 0 !important;
+            margin-bottom: 0.18em !important;
+            text-align: left !important;
+        }
+
+        .project-detail > .meta {
+            margin-top: 0 !important;
+            margin-bottom: 0.55em !important;
+            text-align: left !important;
+        }
+
+        .project-detail > p:not(.meta) {
+            display: block !important;
+            margin-top: 0 !important;
+            margin-bottom: 0.8em !important;
+            padding: 0 !important;
+            text-align: left !important;
+            text-align-last: left !important;
+            font-size: 0.48em !important;
+            line-height: 1.42 !important;
+            letter-spacing: 0 !important;
+            word-spacing: normal !important;
+            white-space: normal !important;
+        }
+
+        /* Prevent any inherited flex/justify behaviour on paragraph contents */
+        .project-detail > p:not(.meta) br {
+            display: none !important;
+        }
+
+        /* Subsections such as BTS / Yayo */
+        .project-subsection {
+            width: min(860px, 88%) !important;
+            max-width: 860px !important;
+            margin: 0.75em auto 0 auto !important;
+            padding: 0 !important;
+            text-align: left !important;
+        }
+
+        .project-subsection h3 {
+            margin: 0 0 0.22em 0 !important;
+            text-align: left !important;
+            font-size: 0.78em !important;
+            line-height: 1.15 !important;
+        }
+
+        .project-subsection p {
+            margin: 0 0 0.65em 0 !important;
+            max-width: 760px !important;
+            padding: 0 !important;
+            text-align: left !important;
+            text-align-last: left !important;
+            font-size: 0.48em !important;
+            line-height: 1.4 !important;
+            word-spacing: normal !important;
+            letter-spacing: 0 !important;
+        }
+
+        /* Home / contact text: compact centered block */
+        .home-slide .tagline {
+            width: min(820px, 88%) !important;
+            max-width: 820px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: center !important;
+            text-align-last: center !important;
+            line-height: 1.42 !important;
+            word-spacing: normal !important;
+        }
+
+        /* Compact CV page */
+        .cv-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 16px !important;
+            width: min(980px, 94%) !important;
+            max-width: 980px !important;
+            margin: 0.4em auto 0 auto !important;
+            align-items: start !important;
+        }
+
+        .cv-block {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .cv-block h3 {
+            margin: 0 0 0.28em 0 !important;
+            padding: 0 0 0.18em 0 !important;
+            font-size: 0.72em !important;
+        }
+
+        .cv-block ul {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .cv-block li {
+            margin: 0 0 0.22em 0 !important;
+            padding: 0 !important;
+            font-size: 0.48em !important;
+            line-height: 1.35 !important;
+        }
+
+        .cv-pdf {
+            margin-top: 0.7em !important;
+        }
+
+        @media (max-width: 900px) {
+            .cv-grid {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+                width: min(620px, 94%) !important;
+            }
+
+            .project-detail > h2,
+            .project-detail > .meta,
+            .project-detail > p:not(.meta),
+            .project-subsection {
+                width: 92% !important;
+                max-width: 92% !important;
+            }
+        }
+
+    
+        /* =========================================================
+           HOME / CONTACT + CV COMPACT FIX
+           ========================================================= */
+
+        /* First and last pages: one compact centered block, no giant gaps. */
+        .home-slide {
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 0 !important;
+            padding-top: 28px !important;
+            padding-bottom: 28px !important;
+            overflow-y: hidden !important;
+        }
+
+        .home-slide h1,
+        .home-slide h2 {
+            margin: 0 0 0.22em 0 !important;
+            padding: 0 !important;
+            text-align: center !important;
+        }
+
+        .home-slide .subtitle {
+            width: min(760px, 88%) !important;
+            margin: 0 0 0.7em 0 !important;
+            padding: 0 !important;
+            font-size: 0.78em !important;
+            line-height: 1.25 !important;
+            text-align: center !important;
+        }
+
+        .home-slide .tagline {
+            display: block !important;
+            width: min(760px, 86%) !important;
+            max-width: 760px !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            font-size: 0.66em !important;
+            line-height: 1.38 !important;
+            letter-spacing: 0 !important;
+            word-spacing: normal !important;
+            text-align: center !important;
+            text-align-last: center !important;
+            white-space: normal !important;
+        }
+
+        .home-slide .cta {
+            margin: 0.85em 0 0 0 !important;
+            padding: 0 !important;
+            font-size: 0.48em !important;
+            line-height: 1.2 !important;
+        }
+
+        /* Final contact page inline paragraphs */
+        .home-slide > p[style*="font-size:0.85em"] {
+            margin: 0.8em 0 0 0 !important;
+            font-size: 0.58em !important;
+            line-height: 1.25 !important;
+        }
+
+        .home-slide > p[style*="font-size:0.7em"] {
+            margin: 0.75em 0 0 0 !important;
+            font-size: 0.42em !important;
+            line-height: 1.2 !important;
+        }
+
+        /* CV: compact enough to fit almost entirely without scrolling. */
+        .cv-slide {
+            justify-content: center !important;
+            align-items: center !important;
+            padding-top: 22px !important;
+            padding-bottom: 22px !important;
+            overflow-y: auto !important;
+        }
+
+        .cv-slide > h2 {
+            margin: 0 0 0.38em 0 !important;
+            font-size: 1.25em !important;
+            line-height: 1 !important;
+        }
+
+        .cv-slide .cv-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+            width: min(900px, 92%) !important;
+            max-width: 900px !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            overflow: visible !important;
+            max-height: none !important;
+        }
+
+        .cv-slide .cv-block {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .cv-slide .cv-block h3 {
+            margin: 0 0 0.22em 0 !important;
+            padding: 0 0 0.12em 0 !important;
+            font-size: 0.62em !important;
+            line-height: 1.1 !important;
+        }
+
+        .cv-slide .cv-block ul {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .cv-slide .cv-block li {
+            margin: 0 0 0.14em 0 !important;
+            padding: 0 !important;
+            font-size: 0.41em !important;
+            line-height: 1.25 !important;
+        }
+
+        .cv-slide .cv-pdf {
+            margin: 0.65em 0 0 0 !important;
+            padding: 7px 16px !important;
+            font-size: 0.48em !important;
+            line-height: 1.1 !important;
+        }
+
+        @media (max-width: 900px) {
+            .cv-slide {
+                justify-content: flex-start !important;
+            }
+
+            .cv-slide .cv-grid {
+                grid-template-columns: 1fr !important;
+                width: min(560px, 92%) !important;
+                gap: 8px !important;
+            }
+        }
+
+    
+        /* =========================================================
+           TARGETED SPACING / CENTERING FIX
+           ========================================================= */
+
+        /* ---------- Landing page ---------- */
+        .landing-slide {
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 24px 40px !important;
+            gap: 0 !important;
+            overflow: hidden !important;
+        }
+
+        .landing-slide h1 {
+            font-size: 2.45em !important;
+            line-height: 0.95 !important;
+            margin: 0 0 0.28em 0 !important;
+            padding: 0 !important;
+        }
+
+        .landing-slide .subtitle {
+            font-size: 0.68em !important;
+            line-height: 1.2 !important;
+            margin: 0 0 0.72em 0 !important;
+            padding: 0 !important;
+            max-width: 900px !important;
+        }
+
+        .landing-slide .tagline {
+            font-size: 0.52em !important;
+            line-height: 1.35 !important;
+            width: min(760px, 82%) !important;
+            max-width: 760px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: center !important;
+            text-align-last: center !important;
+        }
+
+        .landing-slide .cta {
+            font-size: 0.40em !important;
+            line-height: 1.1 !important;
+            margin: 0.8em 0 0 0 !important;
+            padding: 0 !important;
+        }
+
+        /* ---------- Art graphique 3 ---------- */
+        .art3-slide {
+            align-items: center !important;
+            text-align: left !important;
+        }
+
+        .art3-slide > h2 {
+            width: min(900px, 88%) !important;
+            max-width: 900px !important;
+            font-size: 1.05em !important;
+            line-height: 1.05 !important;
+            margin: 0 auto 0.18em auto !important;
+            padding: 0 !important;
+            text-align: left !important;
+        }
+
+        .art3-slide > .meta {
+            width: min(900px, 88%) !important;
+            max-width: 900px !important;
+            margin: 0 auto 0.48em auto !important;
+            padding: 0 !important;
+            font-size: 0.42em !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+        }
+
+        .art3-slide > p:not(.meta) {
+            width: min(900px, 88%) !important;
+            max-width: 900px !important;
+            margin: 0 auto 0.7em auto !important;
+            padding: 0 !important;
+            font-size: 0.46em !important;
+            line-height: 1.38 !important;
+            text-align: left !important;
+            text-align-last: left !important;
+        }
+
+        /* ---------- Contact page ---------- */
+        .contact-slide {
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 24px 40px !important;
+            gap: 0 !important;
+            overflow: hidden !important;
+        }
+
+        .contact-slide h2 {
+            font-size: 1.65em !important;
+            line-height: 1 !important;
+            margin: 0 0 0.35em 0 !important;
+            padding: 0 !important;
+        }
+
+        .contact-slide .tagline {
+            width: min(720px, 82%) !important;
+            max-width: 720px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 0.56em !important;
+            line-height: 1.38 !important;
+            text-align: center !important;
+            text-align-last: center !important;
+        }
+
+        .contact-slide > p[style*="font-size:0.85em"] {
+            margin: 0.75em 0 0 0 !important;
+            padding: 0 !important;
+            font-size: 0.50em !important;
+            line-height: 1.2 !important;
+        }
+
+        .contact-slide > p[style*="font-size:0.7em"] {
+            margin: 0.7em 0 0 0 !important;
+            padding: 0 !important;
+            font-size: 0.36em !important;
+            line-height: 1.15 !important;
+        }
+
+        /* Prevent accidental huge line spacing from inherited Reveal rules. */
+        .landing-slide p,
+        .contact-slide p,
+        .art3-slide p {
+            letter-spacing: 0 !important;
+            word-spacing: normal !important;
+            white-space: normal !important;
+        }
+
+        @media (max-width: 900px) {
+            .landing-slide h1 {
+                font-size: 1.9em !important;
+            }
+
+            .art3-slide > h2 {
+                font-size: 0.92em !important;
+            }
+
+            .landing-slide .tagline,
+            .contact-slide .tagline,
+            .art3-slide > h2,
+            .art3-slide > .meta,
+            .art3-slide > p:not(.meta) {
+                width: 92% !important;
+                max-width: 92% !important;
+            }
+        }
+
+    
+        /* =========================================================
+           FINAL CENTERING + CV RUBRICS FIX
+           ========================================================= */
+
+        /* ----- Landing page: everything truly centered ----- */
+        .landing-slide {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        .landing-slide h1,
+        .landing-slide .subtitle,
+        .landing-slide .tagline,
+        .landing-slide .cta {
+            width: min(900px, 88%) !important;
+            max-width: 900px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: center !important;
+            text-align-last: center !important;
+        }
+
+        .landing-slide h1 {
+            line-height: 0.95 !important;
+            margin-bottom: 0.28em !important;
+        }
+
+        .landing-slide .subtitle {
+            margin-bottom: 0.7em !important;
+        }
+
+        .landing-slide .tagline {
+            width: min(760px, 82%) !important;
+            max-width: 760px !important;
+            line-height: 1.35 !important;
+        }
+
+        /* ----- Art graphique 3: center all text cleanly ----- */
+        .art3-slide {
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        .art3-slide > h2,
+        .art3-slide > .meta,
+        .art3-slide > p:not(.meta) {
+            width: min(900px, 88%) !important;
+            max-width: 900px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: center !important;
+            text-align-last: center !important;
+        }
+
+        .art3-slide > h2 {
+            margin-bottom: 0.25em !important;
+        }
+
+        .art3-slide > .meta {
+            margin-bottom: 0.55em !important;
+        }
+
+        .art3-slide > p:not(.meta) {
+            line-height: 1.4 !important;
+            margin-bottom: 0.75em !important;
+        }
+
+        /* ----- CV page: centered 3-rubric block, text left-aligned inside ----- */
+        .cv-slide {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 24px 40px !important;
+        }
+
+        .cv-slide > h2 {
+            margin: 0 0 0.55em 0 !important;
+            text-align: center !important;
+        }
+
+        .cv-slide .cv-grid {
+            width: min(980px, 92%) !important;
+            max-width: 980px !important;
+            display: grid !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 22px !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            align-items: start !important;
+            overflow: visible !important;
+            max-height: none !important;
+        }
+
+        .cv-slide .cv-block {
+            text-align: left !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .cv-slide .cv-block h3 {
+            text-align: left !important;
+            margin: 0 0 0.35em 0 !important;
+            padding: 0 0 0.18em 0 !important;
+            font-size: 0.70em !important;
+            line-height: 1.1 !important;
+        }
+
+        .cv-slide .cv-block ul {
+            margin: 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+        }
+
+        .cv-slide .cv-block li {
+            margin: 0 0 0.28em 0 !important;
+            padding: 0 !important;
+            font-size: 0.46em !important;
+            line-height: 1.35 !important;
+            text-align: left !important;
+        }
+
+        .cv-slide .cv-pdf {
+            margin: 0.85em auto 0 auto !important;
+        }
+
+        @media (max-width: 900px) {
+            .cv-slide {
+                justify-content: flex-start !important;
+            }
+
+            .cv-slide .cv-grid {
+                grid-template-columns: 1fr !important;
+                width: min(560px, 92%) !important;
+                gap: 12px !important;
+            }
+
+            .cv-slide .cv-block h3,
+            .cv-slide .cv-block li {
+                text-align: left !important;
+            }
+        }
+
+    
+        /* =========================================================
+           HOME + CONTACT ULTRA COMPACT
+           ========================================================= */
+
+        /* Disable flex distribution on first/last slide:
+           normal document flow gives predictable compact spacing. */
+        .landing-slide,
+        .contact-slide {
+            display: block !important;
+            text-align: center !important;
+            padding: 70px 40px 30px 40px !important;
+            overflow-y: hidden !important;
+            box-sizing: border-box !important;
+        }
+
+        /* ---------- HOME ---------- */
+        .landing-slide h1 {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 auto 18px auto !important;
+            padding: 0 !important;
+            font-size: 2.05em !important;
+            line-height: 0.95 !important;
+            text-align: center !important;
+        }
+
+        .landing-slide .subtitle {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 auto 18px auto !important;
+            padding: 0 !important;
+            font-size: 0.68em !important;
+            line-height: 1.2 !important;
+            text-align: center !important;
+        }
+
+        .landing-slide .tagline {
+            width: min(760px, 82%) !important;
+            max-width: 760px !important;
+            margin: 0 auto 14px auto !important;
+            padding: 0 !important;
+            font-size: 0.52em !important;
+            line-height: 1.35 !important;
+            text-align: center !important;
+            text-align-last: center !important;
+        }
+
+        .landing-slide .cta {
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            font-size: 0.40em !important;
+            line-height: 1.15 !important;
+            text-align: center !important;
+        }
+
+        /* ---------- CONTACT ---------- */
+        .contact-slide {
+            padding-top: 120px !important;
+        }
+
+        .contact-slide h2 {
+            width: 100% !important;
+            margin: 0 auto 22px auto !important;
+            padding: 0 !important;
+            font-size: 1.65em !important;
+            line-height: 1 !important;
+            text-align: center !important;
+        }
+
+        .contact-slide .tagline {
+            width: min(720px, 82%) !important;
+            max-width: 720px !important;
+            margin: 0 auto 18px auto !important;
+            padding: 0 !important;
+            font-size: 0.56em !important;
+            line-height: 1.35 !important;
+            text-align: center !important;
+            text-align-last: center !important;
+        }
+
+        .contact-slide > p[style*="font-size:0.85em"] {
+            width: 100% !important;
+            margin: 0 auto 12px auto !important;
+            padding: 0 !important;
+            font-size: 0.50em !important;
+            line-height: 1.2 !important;
+            text-align: center !important;
+        }
+
+        .contact-slide > p[style*="font-size:0.7em"] {
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            font-size: 0.36em !important;
+            line-height: 1.15 !important;
+            text-align: center !important;
+        }
+
+        /* Remove generated bottom spacer on these two short slides. */
+        .landing-slide::after,
+        .contact-slide::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        @media (max-width: 900px) {
+            .landing-slide,
+            .contact-slide {
+                padding: 55px 24px 24px 24px !important;
+            }
+
+            .landing-slide h1 {
+                font-size: 1.65em !important;
+            }
+
+            .contact-slide {
+                padding-top: 90px !important;
+            }
+        }
+
+    
+        /* ----- Remove remaining vertical gap before main text ----- */
+        .landing-slide .subtitle {
+            margin-bottom: 6px !important;
+        }
+
+        .landing-slide .tagline {
+            margin-top: 0 !important;
+        }
+
+        .contact-slide h2 {
+            margin-bottom: 6px !important;
+        }
+
+        .contact-slide .tagline {
+            margin-top: 0 !important;
+        }
+
+    
+        /* ----- Landing tagline: remove the remaining visual gap ----- */
+        .landing-slide .subtitle {
+            margin-bottom: 0 !important;
+        }
+
+        .landing-slide .tagline {
+            margin: -34px auto 10px auto !important;
+            padding: 0 !important;
+        }
+
+    
+        /* ----- Contact tagline: remove the remaining visual gap ----- */
+        .contact-slide h2 {
+            margin-bottom: 0 !important;
+        }
+
+        .contact-slide .tagline {
+            margin: -34px auto 12px auto !important;
+            padding: 0 !important;
+        }
+
+    
+        /* ----- Center the specific "dessinlapin" image in its frame ----- */
+        .media-grid img.dessinlapin-centered {
+            display: block !important;
+            width: min(100%, 900px) !important;
+            max-width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            justify-self: center !important;
+            align-self: center !important;
+            object-fit: contain !important;
+            object-position: center center !important;
+            background-position: center center !important;
+        }
+
+    
+        /* ----- Art graphique 3: ensure the last video is fully reachable ----- */
+        .reveal .slides section.art3-slide.present {
+            overflow-y: auto !important;
+            height: 100% !important;
+            max-height: 100% !important;
+            padding-bottom: 220px !important;
+            box-sizing: border-box !important;
+        }
+
+        .art3-slide .art3-video-end {
+            margin-bottom: 140px !important;
+        }
+
+        .art3-slide::after {
+            content: "";
+            display: block !important;
+            height: 120px !important;
+            flex: 0 0 120px !important;
+        }
+
+    
+        /* ----- Reveal hierarchy: horizontal columns, vertical project stacks ----- */
+        .reveal .slides > section.stack {
+            overflow: hidden !important;
+        }
+
     </style>
 
 </head>
@@ -799,19 +1997,13 @@
 
             <!-- ==================== ACCUEIL ==================== -->
 
-            <section class="home-slide">
+            <section class="home-slide landing-slide">
 
                 <h1>Adrien Hoffmann</h1>
 
                 <p class="subtitle">Artiste 3D &middot; Art graphique &middot; Direction artistique</p>
 
-                <p class="tagline">
-
-                    Bienvenue sur mon portfolio interactif.<br>
-
-                    Faites défiler pour découvrir mon CV, mes créations 3D et mes projets d’art graphique.
-
-                </p>
+                <p class="tagline">Bienvenue sur mon portfolio interactif. Faites défiler pour découvrir mon CV, mes créations 3D et mes projets d’art graphique.</p>
 
                 <p class="cta">→ flèches du clavier ou swipe pour naviguer</p>
 
@@ -821,128 +2013,269 @@
 
             <section>
 
-                <section>
+                <section class="cv-slide">
 
                     <h2>CV</h2>
 <div class="cv-grid">
 
-                        <div class="cv-block">
+                            <div class="cv-block">
+                                <h3>Profil</h3>
+                                <ul>
+                                    <li><strong>Nom :</strong> Adrien Hoffmann</li>
+                                    <li><strong>Métier :</strong> Artiste 3D / Art graphique</li>
+                                    <li><strong>Spécialités :</strong> Environnements 3D, génération procédurale, digital painting, identité visuelle</li>
+                                </ul>
+                            </div>
 
-                            <h3>Profil</h3>
+                            <div class="cv-block">
+                                <h3>Compétences</h3>
+                                <ul>
+                                    <li>Modélisation 3D &amp; sculpture</li>
+                                    <li>Création d’assets &amp; génération procédurale</li>
+                                    <li>Digital painting &amp; illustration</li>
+                                    <li>Direction artistique &amp; branding</li>
+                                </ul>
+                            </div>
 
-                            <ul>
+                            <div class="cv-block">
+                                <h3>Contact</h3>
+                                <ul>
+                                    <li>Email : <a href="mailto:adrien.albdw@gmail.com">adrien.albdw@gmail.com</a></li>
+                                </ul>
+                            </div>
 
-                                <li><strong>Nom :</strong> Adrien Hoffmann</li>
+                        </div>
 
-                                <li><strong>Métier :</strong> Artiste 3D / Art graphique</li>
-
-                                <li><strong>Spécialités :</strong> Environnements 3D, génération procédurale, digital painting, identité visuelle</li>
-
-                            </ul>
-
-                        </div>
-
-                        <div class="cv-block">
-
-                            <h3>Compétences</h3>
-
-                            <ul>
-
-                                <li>Modélisation 3D &amp; sculpture</li>
-
-                                <li>Création d’assets &amp; génération procédurale</li>
-
-                                <li>Digital painting &amp; illustration</li>
-
-                                <li>Direction artistique &amp; branding</li>
-
-                            </ul>
-
-                        </div>
-<div class="cv-block">
-
-                            <h3>Contact</h3>
-
-                            <ul>
-
-                                <li>Email : <a href="mailto:adrien.hoffmann@example.com">adrien.hoffmann@example.com</a></li>
-</ul>
-
-                        </div>
-
-                    </div>
-
-                    <br>
-
-                    <a class="cv-pdf" href="asset/cv/CV%20AH%202026%20designerGraphiste.pdf" target="_blank">📄 Voir / télécharger mon CV 2026 (PDF)</a>
+                        <a class="cv-pdf" href="asset/cv/CV%20AH%202026%20designerGraphiste.pdf" target="_blank">📄 Voir / télécharger mon CV 2026 (PDF)</a>
 
                 </section>
 
             </section>
 
-            <!-- ==================== PORTFOLIO 3D ==================== -->
+            
+            <!-- ==================== PORTFOLIO ART GRAPHIQUE ==================== -->
+            <section>
+                <section>
+    <h2>Portfolio Art Graphique</h2>
+    <p style="font-size:0.7em; color:#666; margin-bottom:1.2em;">Trois axes : dessin et illustration, identité de marque, puis passage du 2D au 3D.</p>
 
-            <section>
+    <div class="portfolio-overview">
+        <div class="portfolio-card">
+            <img src="asset/artgraphique1%20dessin%20et%20artgraphique/dessinlapin.JPG" alt="Art graphique 1">
+            <h3>Art graphique 1 — Dessin &amp; art graphique</h3>
+            <p>Illustrations, croquis et expérimentations graphiques.</p>
+        </div>
 
-                <!-- Overview -->
+        <div class="portfolio-card">
+            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayocouch%C3%A9.JPG" alt="Art graphique 2">
+            <h3>Art graphique 2 — Marque &amp; client</h3>
+            <p>Illustration éditoriale, identité visuelle et projets de marque.</p>
+        </div>
 
-                <section>
+        <div class="portfolio-card">
+            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/City%20digital%20painting.jpg" alt="Art graphique 3">
+            <h3>Art graphique 3 — Du 2D au 3D</h3>
+            <p>Déclinaison d’une idée en IA, 3D et digital painting.</p>
+        </div>
+    </div>
+</section>
 
-                    <h2>Portfolio 3D</h2>
+                <!-- Art graphique 1 detail -->
+                <section class="project-detail">
 
-                    <p style="font-size:0.7em; color:#666; margin-bottom:1.2em;">Trois projets autour des environnements virtuels, des assets et de l’infini généré.</p>
+                    <h2>Art graphique 1 — Dessin &amp; art graphique</h2>
 
-                    <div class="portfolio-overview">
+                    <p class="meta">Illustration / Dessin traditionnel &amp; digital</p>
 
-                        <div class="portfolio-card">
+                    <p>Série de dessins et illustrations mêlant techniques traditionnelles et digital painting. On y trouve des croquis d’animaux, des portraits et des expérimentations graphiques.</p>
 
-                            <img src="asset/3D1%20art%20environemental/landscape.jpg" alt="3D 1">
+                    <div class="media-grid">
 
-                            <h3>3D 1 — Art environnemental</h3>
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/dessinlapin.JPG" alt="Lapin" class="dessinlapin-centered">
 
-                            <p>Environnements naturels et extraterrestres.</p>
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/beau%20veron%20fini.jpg" alt="Veron">
 
-                        </div>
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/RAGE.jpg" alt="Rage">
 
-                        <div class="portfolio-card">
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/nuage.JPG" alt="Nuage">
 
-                            <img src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/clifften.PNG" alt="3D 2">
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/INSTA.jpg" alt="Insta">
 
-                            <h3>3D 2 — Assets &amp; génération procédurale</h3>
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/25025042_2015213048736074_8524450518423044096_n.jpg"
+                             alt="Illustration 25025042"
+                             data-base="asset/artgraphique1%20dessin%20et%20artgraphique/25025042_2015213048736074_8524450518423044096_n"
+                             data-ext-index="0"
+                             onerror="const e=['.JPG','.png','.PNG','.jpeg','.webp']; const i=Number(this.dataset.extIndex||0); if(i&lt;e.length){this.dataset.extIndex=i+1;this.src=this.dataset.base+e[i];}else{this.style.display='none';}">
 
-                            <p>Création d’assets et terrains procéduraux.</p>
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/desgin%20by.jpg"
+                             alt="Design by"
+                             data-base="asset/artgraphique1%20dessin%20et%20artgraphique/desgin%20by"
+                             data-ext-index="0"
+                             onerror="const e=['.JPG','.png','.PNG','.jpeg','.webp']; const i=Number(this.dataset.extIndex||0); if(i&lt;e.length){this.dataset.extIndex=i+1;this.src=this.dataset.base+e[i];}else{this.style.display='none';}">
 
-                        </div>
+                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/IMG_20180307_170109.jpg"
+                             alt="Illustration IMG 20180307"
+                             data-base="asset/artgraphique1%20dessin%20et%20artgraphique/IMG_20180307_170109"
+                             data-ext-index="0"
+                             onerror="const e=['.JPG','.png','.PNG','.jpeg','.webp']; const i=Number(this.dataset.extIndex||0); if(i&lt;e.length){this.dataset.extIndex=i+1;this.src=this.dataset.base+e[i];}else{this.style.display='none';}">
 
-                        <div class="portfolio-card">
+                    </div>
 
-                            <img src="asset/3D3%20vers%20l'infini/100%20made%20by%20me.png" alt="3D 3">
+                </section>
 
-                            <h3>3D 3 — Vers l’infini</h3>
+                <!-- Art graphique 2 detail -->
+                <section class="project-detail">
 
-                            <p>Explorations spatiales et concepts infinis.</p>
+                    <h2>Art graphique 2 — Marque &amp; client</h2>
 
-                        </div>
+                    <p class="meta">Branding / Illustration commerciale</p>
 
-                    </div>
+                    <p>Deux projets distincts : un travail d’illustration réalisé en BTS pour un livre pour enfant, et les visuels créés pour Yayo, une marque de vêtements fondée avec deux amis.</p>
 
-                </section>
+                    <div class="project-subsection">
+                        <h3>Projet BTS — Livre pour enfant</h3>
+                        <p>Illustrations réalisées dans le cadre de mon BTS pour un projet de livre pour enfant.</p>
+                        <div class="media-grid">
+                            <img src="asset/artgraphique2%20marque%20et%20client/client/arbre.JPG" alt="Illustration arbre — livre pour enfant">
+                            <img src="asset/artgraphique2%20marque%20et%20client/client/herisson.JPG" alt="Illustration hérisson — livre pour enfant">
+                            <img src="asset/artgraphique2%20marque%20et%20client/client/m%C3%A9sanges.JPG" alt="Illustration mésanges — livre pour enfant">
+                            <img src="asset/artgraphique2%20marque%20et%20client/client/montagne.JPG" alt="Illustration montagne — livre pour enfant">
+                            <img src="asset/artgraphique2%20marque%20et%20client/client/renard.JPG" alt="Illustration renard — livre pour enfant">
+                        </div>
+                    </div>
 
-                <!-- 3D1 detail -->
+                    <div class="project-subsection">
+                        <h3>Yayo — Marque de vêtements</h3>
+                        <p>Visuels réalisés pour Yayo, la marque de vêtements que j’ai créée avec deux amis.</p>
+                        <div class="media-grid">
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/cerise%20en%20cour%20final%20-%20de%20%20branches.jpg" alt="Yayo — cerise en cours">
 
-                <section class="project-detail">
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/design.JPG" alt="Yayo design">
+
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/goldenflower.JPG" alt="Yayo Golden Flower">
+
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/TEASER%20FL%C3%89AU%20vrai%20fl%C3%A9au%20final%201%202%20planet%20simsim.jpg" alt="Yayo teaser Fléau">
+
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayo%20cerise.JPG" alt="Yayo cerise">
+
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayo%20cocktail.JPG" alt="Yayo cocktail">
+
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayo%20pluie.JPG" alt="Yayo pluie">
+
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayocerisier.JPG" alt="Yayo cerisier">
+
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayocouch%C3%A9.JPG" alt="Yayo couché">
+
+                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayoplume.JPG" alt="Yayo plume">
+                        </div>
+                    </div>
+
+                    <div class="project-subsection">
+                        <h3>Bamb Go</h3>
+                        <p>Présentation du projet Bamb Go : recherches graphiques, identité visuelle et mise en situation du produit.</p>
+
+                        <div class="media-grid">
+                            <img src="asset/bambgo/1.png" alt="Bamb Go 1">
+                            <img src="asset/bambgo/2.png" alt="Bamb Go 2">
+                            <img src="asset/bambgo/3.png" alt="Bamb Go 3">
+                            <img src="asset/bambgo/4.png" alt="Bamb Go 4">
+                            <img src="asset/bambgo/5.png" alt="Bamb Go 5">
+                            <img src="asset/bambgo/6.png" alt="Bamb Go 6">
+                            <div class="youtube-inline" id="youtubeInlineQ2RSkdNCAgw">
+                            <button class="youtube-inline-preview" type="button"
+                                    onclick="playYouTubeInline('Q2RSkdNCAgw')"
+                                    aria-label="Lire le film Bamb Go dans le portfolio">
+                                <img src="https://img.youtube.com/vi/Q2RSkdNCAgw/maxresdefault.jpg"
+                                     alt="Aperçu du film Bamb Go">
+                                <span class="youtube-inline-play">▶</span>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- Art graphique 3 detail -->
+                <section class="project-detail art3-slide">
+
+                    <h2>Art graphique 3 — Du 2D au 3D</h2>
+
+                    <p class="meta">Concept art / Digital painting / Modélisation 3D</p>
+
+                    <p>Ce projet montre le passage d’une idée visuelle à sa déclinaison en image générée par IA, en modélisation 3D et en digital painting.</p>
+
+                    <div class="project-subsection">
+                        <h3>City</h3>
+                        <div class="media-grid">
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/cityAI.png" alt="City AI">
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/city3D.jpg" alt="City 3D">
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/City%20digital%20painting.jpg" alt="City digital painting">
+                        </div>
+                    </div>
+
+                    <div class="project-subsection">
+                        <h3>Spruce</h3>
+                        <div class="media-grid">
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/SpruceAI.png" alt="Spruce AI">
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/spruce%203D.jpg" alt="Spruce 3D">
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/spruce%20digital%20painting.jpg" alt="Spruce digital painting">
+                        </div>
+                    </div>
+
+                    <div class="project-subsection">
+                        <h3>Tropical Island</h3>
+                        <div class="media-grid">
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/tropical%20island%20AI.png" alt="Tropical island AI">
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/tropical%20islance%203D.png" alt="Tropical island 3D">
+                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/tropical%20island%20digital%20painting.jpg" alt="Tropical island digital painting">
+                        </div>
+                    </div>
+
+                    <div class="project-subsection art3-video-end">
+                        <h3>Présentation vidéo</h3>
+                        <div class="media-grid">
+                            <video controls preload="metadata" playsinline src="asset/artgraphique3%20du%202D%20a%20la%203D/citysprucetrop.mp4"></video>
+                        </div>
+                    </div>
+
+                </section>
+            </section>
+
+            <!-- ==================== PORTFOLIO 3D ==================== -->
+            <section>
+                <section>
+    <h2>Portfolio 3D</h2>
+    <p style="font-size:0.7em; color:#666; margin-bottom:1.2em;">Trois projets autour des environnements virtuels, des assets et de la génération procédurale.</p>
+
+    <div class="portfolio-overview">
+        <div class="portfolio-card">
+            <img src="asset/3D1%20art%20environemental/landscape.jpg" alt="3D 1">
+            <h3>3D 1 — Art environnemental</h3>
+            <p>Environnements naturels et extraterrestres.</p>
+        </div>
+
+        <div class="portfolio-card">
+            <img src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/clifften.PNG" alt="3D 2">
+            <h3>3D 2 — Assets &amp; génération procédurale</h3>
+            <p>Création d’assets et terrains procéduraux.</p>
+        </div>
+
+        <div class="portfolio-card">
+            <img src="asset/3D3%20vers%20l'infini/HighresScreenshot00007.png" alt="3D 3">
+            <h3>3D 3 — Vers l’infini</h3>
+            <p>Monde procédural et espace théoriquement infini.</p>
+        </div>
+    </div>
+</section>
+
+                <!-- 3D1 detail -->
+                <section class="project-detail">
 
                     <h2>3D 1 — Art environnemental</h2>
 
                     <p class="meta">Environnements 3D / Landscapes</p>
 
-                    <p>
-
-                        Série d’environnements 3D explorant différents biomes : jungle luxuriante, dunes minérales et paysages martiens.
-
-                        Le travail porte sur la composition, l’éclairage atmosphérique et la création d’espaces immersifs.
-
-                    </p>
+                    <p>Série d’environnements 3D explorant différents biomes : forêt rocheuse, dunes minérales et paysages martiens. Le travail porte sur la composition, l’éclairage atmosphérique et la création d’espaces immersifs.</p>
 
                     <div class="media-grid">
 
@@ -958,281 +2291,101 @@
 
                 </section>
 
-                <!-- 3D2 detail -->
+                <!-- 3D2 detail -->
+                <section class="project-detail">
 
-                <section class="project-detail">
+                    <h2>3D 2 — Création d’assets &amp; génération procédurale</h2>
 
-                    <h2>3D 2 — Création d’assets &amp; génération procédurale</h2>
+                    <p class="meta">Assets 3D / Procédural / Végétation</p>
 
-                    <p class="meta">Assets 3D / Procédural / Végétation</p>
+                    <p>Recherche sur la création d’assets réutilisables et sur la génération procédurale de végétation et de falaises. Les premières études montrent l’évolution de la végétation et des formations rocheuses générées algorithmiquement.</p>
 
-                    <p>
+                    <div class="media-grid">
 
-                        Recherche sur la création d’assets réutilisables et la génération procédurale de végétation et de falaises.
+                        <img src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/clifften.PNG" alt="Cliff">
 
-                        Les vidéos montrent l’évolution de la végétation et des formations rocheuses générées algorithmiquement.
+                        <video controls preload="metadata" playsinline src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/speedtree.mp4"></video>
 
-                    </p>
+                        <video controls preload="metadata" playsinline src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/proc%C3%A9_1.mp4"></video>
 
-                    <div class="media-grid">
+                        <img src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/clifften2.PNG" alt="Cliff 2">
 
-                        <img src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/clifften.PNG" alt="Cliff">
+                    </div>
 
-                        <video controls preload="metadata" playsinline src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/speedtree.mp4"></video>
+                    <div class="project-subsection">
+                        <h3>Projet d’entraînement — entièrement réalisé par moi</h3>
+                        <p>Il s’agit d’un projet d’entraînement dans lequel j’ai créé l’ensemble des assets, de la réalisation des textures de roches aux herbes, en passant par les arbres et l’eau.</p>
 
-                        <video controls preload="metadata" playsinline src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/proc%C3%A9_1.mp4"></video>
-<img src="asset/3D2%20la%20creation%20d'asset%20et%20la%20generation%20procedural/clifften2.PNG" alt="Cliff 2">
+                        <div class="media-grid">
 
-                    </div>
+                            <img src="asset/3D3%20vers%20l'infini/100%20made%20by%20me.png" alt="100 made by me">
 
-                </section>
-
-                <!-- 3D3 detail -->
-
-                <section class="project-detail">
-
-                    <h2>3D 3 — Vers l’infini</h2>
-
-                    <p class="meta">Space art / Concept 3D</p>
-
-                    <p>
-
-                        Exploration de l’espace et de l’infini à travers des scènes 3D et des animations contemplatives.
-
-                        Ce projet joue avec l’échelle, le vide et la lumière cosmique.
-
-                    </p>
-
-                    <div class="media-grid">
-
-                        <img src="asset/3D3%20vers%20l'infini/100%20made%20by%20me.png" alt="100 made by me">
-
-                        <img src="asset/3D3%20vers%20l'infini/HighresScreenshot00007.png" alt="High resolution screenshot 00007">
-
-                        <img src="asset/3D3%20vers%20l'infini/HighresScreenshot00014.png" alt="High resolution screenshot 00014">
-
-                        <img src="asset/3D3%20vers%20l'infini/adrien-hoffmann-highresscreenshot00001.png"
-                             alt="Capture haute résolution — Vers l’infini"
+                            <img src="asset/3D3%20vers%20l'infini/adrien-hoffmann-highresscreenshot00001.png"
+                             alt="Capture haute résolution — Biome"
                              data-base="asset/3D3%20vers%20l'infini/adrien-hoffmann-highresscreenshot00001"
                              data-ext-index="0"
                              onerror="const e=['.jpg','.JPG','.jpeg','.webp']; const i=Number(this.dataset.extIndex||0); if(i&lt;e.length){this.dataset.extIndex=i+1;this.src=this.dataset.base+e[i];}else{this.style.display='none';}">
 
-                        <div class="youtube-inline" id="youtubeInlinep0z_ZncuytE">
+                            
+                        <div class="youtube-inline" id="youtubeInlinep0z_ZncuytE">
                             <button class="youtube-inline-preview" type="button"
                                     onclick="playYouTubeInline('p0z_ZncuytE')"
-                                    aria-label="Lire l’animation 3D dans le portfolio">
+                                    aria-label="Lire la vidéo biome dans le portfolio">
                                 <img src="https://img.youtube.com/vi/p0z_ZncuytE/maxresdefault.jpg"
-                                     alt="Aperçu de l’animation 3D">
+                                     alt="Aperçu de la vidéo biome">
                                 <span class="youtube-inline-play">▶</span>
                             </button>
                         </div>
 
-                        <div class="youtube-inline" id="youtubeInlineQfEMiWlgyOM">
-                            <button class="youtube-inline-preview" type="button"
-                                    onclick="playYouTubeInline('QfEMiWlgyOM')"
-                                    aria-label="Lire l’animation 3D dans le portfolio">
-                                <img src="https://img.youtube.com/vi/QfEMiWlgyOM/maxresdefault.jpg"
-                                     alt="Aperçu de l’animation 3D">
-                                <span class="youtube-inline-play">▶</span>
-                            </button>
-                        </div>
-
-                    </div>
-
-                </section>
-
-            </section>
-
-            <!-- ==================== PORTFOLIO ART GRAPHIQUE ==================== -->
-
-            <section>
-
-                <!-- Overview -->
-
-                <section>
-
-                    <h2>Portfolio Art Graphique</h2>
-
-                    <p style="font-size:0.7em; color:#666; margin-bottom:1.2em;">Trois axes de création : dessin, identité de marque, et passage du 2D au 3D.</p>
-
-                    <div class="portfolio-overview">
-
-                        <div class="portfolio-card">
-
-                            <img src="asset/artgraphique1%20dessin%20et%20artgraphique/dessinlapin.JPG" alt="Art graphique 1">
-
-                            <h3>Art graphique 1 — Dessin &amp; art graphique</h3>
-
-                            <p>Illustrations, croquis et explorations graphiques.</p>
-
-                        </div>
-
-                        <div class="portfolio-card">
-
-                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/design.JPG" alt="Art graphique 2">
-
-                            <h3>Art graphique 2 — Marque &amp; client</h3>
-
-                            <p>Identités visuelles et créations pour des clients.</p>
-
-                        </div>
-
-                        <div class="portfolio-card">
-
-                            <img src="asset/artgraphique3%20du%202D%20a%20la%203D/City%20digital%20painting.jpg" alt="Art graphique 3">
-
-                            <h3>Art graphique 3 — Du 2D au 3D</h3>
-
-                            <p>Parcours d’une idée sketchée jusqu’à sa version 3D.</p>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-                <!-- Art graphique 1 detail -->
-
-                <section class="project-detail">
-
-                    <h2>Art graphique 1 — Dessin &amp; art graphique</h2>
-
-                    <p class="meta">Illustration / Dessin traditionnel &amp; digital</p>
-
-                    <p>
-
-                        Série de dessins et illustrations mêlant techniques traditionnelles et digital painting.
-
-                        On y trouve des croquis d’animaux, des portraits et des expérimentations graphiques.
-
-                    </p>
-
-                    <div class="media-grid">
-
-                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/dessinlapin.JPG" alt="Lapin">
-
-                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/beau%20veron%20fini.jpg" alt="Veron">
-
-                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/RAGE.jpg" alt="Rage">
-
-                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/nuage.JPG" alt="Nuage">
-
-                        <img src="asset/artgraphique1%20dessin%20et%20artgraphique/INSTA.jpg" alt="Insta">
-
-                    </div>
-
-                </section>
-
-                <!-- Art graphique 2 detail -->
-
-                <section class="project-detail">
-
-                    <h2>Art graphique 2 — Marque &amp; client</h2>
-
-                    <p class="meta">Branding / Illustration commerciale</p>
-
-                    <p>
-                        Deux projets distincts : un travail d’illustration réalisé en BTS pour un livre pour enfant,
-                        et les visuels créés pour Yayo, une marque de vêtements fondée avec deux amis.
-                    </p>
-
-                    <div class="project-subsection">
-                        <h3>Projet BTS — Livre pour enfant</h3>
-                        <p>Illustrations réalisées dans le cadre de mon BTS pour un projet de livre pour enfant.</p>
-                        <div class="media-grid">
-                            <img src="asset/artgraphique2%20marque%20et%20client/client/renard.JPG" alt="Illustration renard — livre pour enfant">
-                            <img src="asset/artgraphique2%20marque%20et%20client/client/montagne.JPG" alt="Illustration montagne — livre pour enfant">
                         </div>
                     </div>
+
+                </section>
+
+                <!-- 3D3 detail -->
+                <section class="project-detail">
+
+                    <h2>3D 3 — Vers l’infini</h2>
+
+                    <p class="meta">Monde procédural / Unreal Engine / Infini</p>
+
+                    <p>Projet autour de la création d’un monde généré procéduralement et pensé comme un espace potentiellement infini.</p>
 
                     <div class="project-subsection">
-                        <h3>Yayo — Marque de vêtements</h3>
-                        <p>Visuels réalisés pour Yayo, la marque de vêtements que j’ai créée avec deux amis.</p>
+                        <p>J’ai toujours été fasciné par la génération de mondes procéduraux et par l’infini théorique qu’elle permet. Dans ce projet, j’ai créé un monde composé d’océans et de terres qui se génère à l’infini au fil des déplacements. L’ensemble a été optimisé grâce à une approche FFT et au Procedural Content Generation d’Unreal Engine.</p>
+
                         <div class="media-grid">
-                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/design.JPG" alt="Yayo design">
-                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayo%20cerise.JPG" alt="Yayo cerise">
-                            <img src="asset/artgraphique2%20marque%20et%20client/yayo/yayocerisier.JPG" alt="Yayo cerisier">
-                        </div>
-                    </div>
 
-                
-                    <!-- Présentation Bamb Go -->
-                    <h3 style="margin-top:1em;">Bamb Go</h3>
-                    <p>
-                        Présentation du projet Bamb Go : recherches graphiques, identité visuelle et mise en situation du produit.
-                    </p>
+                            <img src="asset/3D3%20vers%20l'infini/HighresScreenshot00007.png" alt="High resolution screenshot 00007">
 
-                    <div class="media-grid">
-                        <img src="asset/bambgo/1.png" alt="Bamb Go 1">
-                        <img src="asset/bambgo/2.png" alt="Bamb Go 2">
-                        <img src="asset/bambgo/3.png" alt="Bamb Go 3">
-                        <img src="asset/bambgo/4.png" alt="Bamb Go 4">
-                        <img src="asset/bambgo/5.png" alt="Bamb Go 5">
-                        <img src="asset/bambgo/6.png" alt="Bamb Go 6">
-                        <div class="youtube-inline" id="youtubeInlineQ2RSkdNCAgw">
+                            <img src="asset/3D3%20vers%20l'infini/HighresScreenshot00014.png" alt="High resolution screenshot 00014">
+
+                            <div class="youtube-inline" id="youtubeInlineKZgpKU96ago">
                             <button class="youtube-inline-preview" type="button"
-                                    onclick="playYouTubeInline('Q2RSkdNCAgw')"
-                                    aria-label="Lire le film Bamb Go dans le portfolio">
-                                <img src="https://img.youtube.com/vi/Q2RSkdNCAgw/maxresdefault.jpg"
-                                     alt="Aperçu du film Bamb Go">
+                                    onclick="playYouTubeInline('KZgpKU96ago')"
+                                    aria-label="Lire la vidéo du monde procédural dans le portfolio">
+                                <img src="https://img.youtube.com/vi/KZgpKU96ago/maxresdefault.jpg"
+                                     alt="Aperçu du monde procédural">
                                 <span class="youtube-inline-play">▶</span>
                             </button>
                         </div>
+
+                        </div>
                     </div>
 
-</section>
+                </section>
+            </section>
 
-                <!-- Art graphique 3 detail -->
-
-                <section class="project-detail">
-
-                    <h2>Art graphique 3 — Du 2D au 3D</h2>
-
-                    <p class="meta">Concept art / Digital painting / Modélisation 3D</p>
-
-                    <p>
-
-                        Ce projet montre le passage d’une idée en digital painting à sa réalisation en 3D.
-
-                        Villes futuristes, îles tropicales et forêts stylisées : chaque création existe en version 2D, IA et 3D.
-
-                    </p>
-
-                    <div class="media-grid">
-
-                        <img src="asset/artgraphique3%20du%202D%20a%20la%203D/City%20digital%20painting.jpg" alt="City digital painting">
-
-                        <img src="asset/artgraphique3%20du%202D%20a%20la%203D/city3D.jpg" alt="City 3D">
-
-                        <img src="asset/artgraphique3%20du%202D%20a%20la%203D/spruce%203D.jpg" alt="Spruce 3D">
-
-                        <img src="asset/artgraphique3%20du%202D%20a%20la%203D/tropical%20islance%203D.png" alt="Tropical island 3D">
-
-                        <a class="video-link" href="asset/artgraphique3%20du%202D%20a%20la%203D/citysprucetrop.mp4" target="_blank">▶ Voir ville / spruce / tropique</a>
-
-                    </div>
-
-                </section>
-
-            </section>
-
-            <!-- ==================== CONTACT ==================== -->
-
-            <section class="home-slide">
+            <!-- ==================== CONTACT ==================== -->
+            <section class="home-slide contact-slide">
 
                 <h2>Contact</h2>
 
-                <p class="tagline">
-
-                    Vous avez un projet, une question ou une collaboration en tête ?<br>
-
-                    N’hésitez pas à me contacter.
-
-                </p>
+                <p class="tagline">Vous avez un projet, une question ou une collaboration en tête ? N’hésitez pas à me contacter.</p>
 
                 <p style="font-size:0.85em; margin-top:1.5em;">
 
-                    <a href="mailto:adrien.hoffmann@example.com">adrien.hoffmann@example.com</a>
+                    <a href="mailto:adrien.albdw@gmail.com">adrien.albdw@gmail.com</a>
 
                 </p>
 
@@ -1243,7 +2396,6 @@
                 </p>
 
             </section>
-
         </div>
 
     </div>
@@ -1342,6 +2494,77 @@
                 'referrerpolicy="strict-origin-when-cross-origin" ' +
                 'allowfullscreen></iframe>';
         }
+
+    
+
+        // Interactive background grid: stronger around the pointer.
+        (function () {
+            const root = document.documentElement;
+            let targetX = window.innerWidth * 0.5;
+            let targetY = window.innerHeight * 0.5;
+            let currentX = targetX;
+            let currentY = targetY;
+            let raf = null;
+
+            function renderGridPointer() {
+                currentX += (targetX - currentX) * 0.18;
+                currentY += (targetY - currentY) * 0.18;
+
+                root.style.setProperty('--mouse-x', currentX + 'px');
+                root.style.setProperty('--mouse-y', currentY + 'px');
+
+                if (Math.abs(targetX - currentX) > 0.25 ||
+                    Math.abs(targetY - currentY) > 0.25) {
+                    raf = requestAnimationFrame(renderGridPointer);
+                } else {
+                    raf = null;
+                }
+            }
+
+            function moveGridPointer(x, y) {
+                targetX = x;
+                targetY = y;
+                if (!raf) raf = requestAnimationFrame(renderGridPointer);
+            }
+
+            window.addEventListener('pointermove', function (event) {
+                moveGridPointer(event.clientX, event.clientY);
+            }, { passive: true });
+
+            window.addEventListener('pointerleave', function () {
+                moveGridPointer(window.innerWidth * 0.5, window.innerHeight * 0.5);
+            }, { passive: true });
+        })();
+
+    
+
+        // Force each visible Reveal arrow to execute exactly its own direction.
+        // This avoids overlapping clickable zones sending a DOWN click to RIGHT, etc.
+        (function () {
+            function bindRevealDirection(selector, fn) {
+                document.querySelectorAll(selector).forEach(function (button) {
+                    button.addEventListener('pointerdown', function (event) {
+                        event.preventDefault();
+                        event.stopImmediatePropagation();
+                    }, true);
+
+                    button.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        event.stopImmediatePropagation();
+                        fn();
+                    }, true);
+                });
+            }
+
+            function bindControls() {
+                bindRevealDirection('.reveal .controls .navigate-left', function () { Reveal.left(); });
+                bindRevealDirection('.reveal .controls .navigate-right', function () { Reveal.right(); });
+                bindRevealDirection('.reveal .controls .navigate-up', function () { Reveal.up(); });
+                bindRevealDirection('.reveal .controls .navigate-down', function () { Reveal.down(); });
+            }
+
+            Reveal.on('ready', bindControls);
+        })();
 
     </script>
 
